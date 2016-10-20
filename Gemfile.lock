@@ -1,0 +1,62 @@
+PATH
+  remote: .
+  specs:
+    chloride (0.1.0)
+      net-scp
+      net-ssh
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.1)
+    coolline (0.5.0)
+      unicode_utils (~> 1.4)
+    diff-lcs (1.2.5)
+    docile (1.1.5)
+    json (2.0.2)
+    method_source (0.8.2)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.2.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-coolline (0.2.5)
+      coolline (~> 0.5)
+    rake (10.5.0)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    simplecov (0.12.0)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
+    slop (3.6.0)
+    unicode_utils (1.4.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.13)
+  chloride!
+  pry
+  pry-coolline
+  rake (~> 10.0)
+  rspec (~> 3.0)
+  simplecov
+
+BUNDLED WITH
+   1.13.5
