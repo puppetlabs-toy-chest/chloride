@@ -40,7 +40,7 @@ class Chloride::Host
     unless @localhost
       log = StringIO.new
       logger = Logger.new(log)
-      logger.formatter = proc { |level, date, progname, msg|
+      logger.formatter = proc { |level, date, _progname, msg|
         "[#{date.utc.strftime("%Y-%m-%d %H:%M:%S.%L %Z")}] #{level} #{msg}\n"
       }
 
@@ -50,7 +50,7 @@ class Chloride::Host
         password: @sudo_password,
         logger: logger,
         verbose: :warn,
-      }.reject { |k,v| v.nil? }
+      }.reject { |_,v| v.nil? }
 
       ssh_opts[:keys] = [@ssh_key_file] if @ssh_key_file
 
@@ -190,7 +190,7 @@ class Chloride::Host
             while out = stdout.gets
               buffer_proc.call(info, :stdout, out)
             end
-          rescue IO::WaitReadable => blocking
+          rescue IO::WaitReadable => _blocking
             buffer_proc.call(info, :stdout, "Waiting on #{cmd}...")
           end
 
@@ -198,7 +198,7 @@ class Chloride::Host
             while err = stderr.gets
               buffer_proc.call(info, :stderr, err)
             end
-          rescue IO::WaitReadable => blocking
+          rescue IO::WaitReadable => _blocking
           end
         end
 

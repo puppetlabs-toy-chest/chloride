@@ -40,29 +40,17 @@ Lint/UnderscorePrefixedVariableName:
   Exclude:
     - 'bin/chloride.rb'
 
-# Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
 Lint/UnusedBlockArgument:
-  Exclude:
-    - 'lib/chloride/action/execute.rb'
-    - 'lib/chloride/action/mkdir.rb'
-    - 'lib/chloride/action/mktmp.rb'
-    - 'lib/chloride/host.rb'
+  Enabled: true
 
-# Offense count: 2
-# Cop supports --auto-correct.
 # Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
 Lint/UnusedMethodArgument:
-  Exclude:
-    - 'lib/chloride/action.rb'
+  Enabled: true
 
-# Offense count: 5
 Lint/UselessAssignment:
-  Exclude:
-    - 'bin/chloride.rb'
-    - 'lib/chloride/action/resolve_dns.rb'
-    - 'lib/chloride/host.rb'
+  Enabled: true
 
 # Offense count: 1
 Lint/Void:

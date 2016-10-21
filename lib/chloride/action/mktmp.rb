@@ -31,7 +31,7 @@ module Chloride
     end
 
     def success?
-      @results.all? do |host, result|
+      @results.all? do |_host, result|
         result[:exit_status] == 0
       end
     end

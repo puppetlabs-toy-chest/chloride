@@ -1,11 +1,11 @@
 module Chloride
   class Action
-      def initialize(args)
+      def initialize(_args)
         @data = {}
         @status = :initialized
       end
 
-      def go(&update_block)
+      def go(_update_block)
         raise NotImplementedError, "Action must implement a go method"
       end
 

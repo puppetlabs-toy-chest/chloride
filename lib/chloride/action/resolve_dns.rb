@@ -30,9 +30,9 @@ module Chloride
         end
       else
         begin
-          ip = Resolv.getaddress(@address)
+          Resolv.getaddress(@address)
           @status = :success
-        rescue Resolv::ResolvError => e
+        rescue Resolv::ResolvError => _e
           @status = :fail
         end
       end
