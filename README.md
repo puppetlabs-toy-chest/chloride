@@ -1,4 +1,4 @@
-# Chloride
+# Chloride [![Build Status](https://travis-ci.org/highb/chloride.svg?branch=master)](https://travis-ci.org/highb/chloride)
 
 A simple abstraction layer around NetSSH.
 
