@@ -41,7 +41,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
                          :sles
                        else
                          distribution.to_sym
-        end
+                       end
 
         release = lsb_data['Release'].gsub(/\s+/, '')
         release = case distribution
@@ -55,7 +55,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
                     end
                   else
                     release
-        end
+                  end
       end
 
       # Check for Redhat
@@ -72,7 +72,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
                            :centos
                          when /scientific/im
                            :rhel
-          end
+                         end
 
           release = /.* release ([[:digit:]]).*/.match(stdout)[1]
         end
@@ -85,7 +85,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
         if (os_release[:exit_status]).zero?
           stdout = os_release[:stdout]
 
-          distribution = :cumulus if /Cumulus Linux/m.match(stdout)
+          distribution = :cumulus if /Cumulus Linux/m =~ stdout
           release = /VERSION_ID=(\d+\.\d)/.match(stdout)[1] if distribution
         end
       end
@@ -97,7 +97,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
         if (eos_release[:exit_status]).zero?
           stdout = eos_release[:stdout]
 
-          distribution = :eos if /Arista Networks EOS/m.match(stdout)
+          distribution = :eos if /Arista Networks EOS/m =~ stdout
 
           release = /^Arista Networks EOS v*(.*)\..*$/.match(stdout)[1]
         end
@@ -116,7 +116,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
                       stdout.split('.')[0]
                     when /^wheezy/.match(stdout)
                       '7'
-          end
+                    end
         end
       end
 
@@ -127,7 +127,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
         if (suse_release[:exit_status]).zero?
           stdout = suse_release[:stdout]
 
-          if /Enterprise Server/.match(stdout)
+          if /Enterprise Server/ =~ stdout
             distribution = :sles
             release = /^VERSION = (\d*)/m.match(stdout)[1]
           end
@@ -141,7 +141,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
         if (system_release[:exit_status]).zero?
           stdout = system_release[:stdout]
 
-          if /amazon linux/im.match(stdout)
+          if /amazon linux/im =~ stdout
             distribution = :amazon
             # How is this safe to assume?
             release = '6'
@@ -172,7 +172,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
                            end
 
                            :aix
-          end
+                         end
         end
       end
 
@@ -191,7 +191,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
                          [:ubuntu, :debian].include?(distribution) ? 'amd64' : 'x86_64'
                        else
                          architecture
-        end
+                       end
       end
 
       host.data[:os] = {}
@@ -209,22 +209,20 @@ class Chloride::Action::DetectPlatform < Chloride::Action
                                                                "el-#{tag_release}-#{tag_architecture}"
                                                              else
                                                                "#{tag_distribution}-#{tag_release}-#{tag_architecture}"
-      end
+                                                             end
     end
 
     @results
   end
 
   def success?
-    @results.all? do |host, result|
+    @results.all? do |_host, result|
       !(result[:distribution].nil? || result[:release].nil? || result[:architecture].nil?)
     end
   end
 
   def error_message(hostname)
-    if @results.key?(hostname) && @results[hostname].key?(:stderr)
-      @results[hostname][:stderr].strip
-    end
+    @results[hostname][:stderr].strip if @results.key?(hostname) && @results[hostname].key?(:stderr)
   end
 
   def name
