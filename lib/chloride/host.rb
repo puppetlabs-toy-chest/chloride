@@ -7,8 +7,7 @@ require 'timeout'
 require 'json'
 
 class Chloride::Host
-  attr_reader :remote_conn, :roles, :hostname, :username, :ssh_key_file, :ssh_key_passphrase, :alt_names, :localhost
-
+  attr_reader :data, :remote_conn, :roles, :hostname, :username, :ssh_key_file, :ssh_key_passphrase, :alt_names, :localhost
   attr_accessor :data
 
   def initialize(hostname, config = {})
@@ -28,8 +27,6 @@ class Chloride::Host
     @timeout = 60
     @ssh_status = nil
   end
-
-  attr_reader :data
 
   # Initializes SSH connection/session to host. Must be called before {#ssh} or {#scp}.
   #
