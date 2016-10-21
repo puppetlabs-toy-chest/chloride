@@ -163,7 +163,10 @@ Style/Documentation:
     - 'lib/chloride/errors.rb'
     - 'lib/chloride/event.rb'
     - 'lib/chloride/event/message.rb'
+    - 'lib/chloride/executor.rb'
     - 'lib/chloride/host.rb'
+    - 'lib/chloride/step.rb'
+    - 'lib/chloride/step/noop.rb'
 
 # Cop supports --auto-correct.
 Style/EmptyLines:

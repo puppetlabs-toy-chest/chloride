@@ -1,7 +1,7 @@
 class Chloride::Step
   attr_reader :actions, :hosts, :messages, :status
 
-  def initialize(data={}, pre=nil, post=nil)
+  def initialize(data = {}, pre = nil, post = nil)
     @pre = pre
     @post = post
     @data = data
@@ -14,16 +14,16 @@ class Chloride::Step
     @uuid = SecureRandom.uuid
   end
 
-  def perform_step(&execute)
+  def perform_step(_execute_block)
     raise NotImplementedError, "Don't know how to perform this kind of step"
   end
 
   def name
-    raise NotImplementedError, "Step name required"
+    raise NotImplementedError, 'Step name required'
   end
 
   def description
-    raise NotImplementedError, "Step description required"
+    raise NotImplementedError, 'Step description required'
   end
 
   def fail_stop?

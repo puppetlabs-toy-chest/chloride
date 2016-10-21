@@ -1,13 +1,13 @@
 require 'chloride/step'
 
 class Chloride::Step::Noop < Chloride::Step
-  def initialize(data={}, pre=nil, post=nil)
+  def initialize(data = {}, pre = nil, post = nil)
     super(data, pre, post)
     @name = data[:name]
     @performed = false
   end
 
-  def perform_step(&stream_block)
+  def perform_step(_execute_block)
     @performed = true
     # noop
   end
@@ -16,11 +16,9 @@ class Chloride::Step::Noop < Chloride::Step
     @performed
   end
 
-  def name
-    @name
-  end
+  attr_reader :name
 
   def description
-    "Do basically nothing"
+    'Do basically nothing'
   end
 end

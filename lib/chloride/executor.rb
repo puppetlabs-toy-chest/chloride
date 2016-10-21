@@ -4,7 +4,7 @@ class Chloride::Executor
     @stream_block = stream_block
   end
 
-  def publish(event, action_id=nil)
+  def publish(event, action_id = nil)
     event.action_id = action_id if action_id
     @stream_block.call(event) if @stream_block
   end
@@ -37,7 +37,7 @@ class Chloride::Executor
             publish(Chloride::Event.new(:action_fail, action.name), action_id)
           end
         end
-      rescue Exception => e
+      rescue Exception => e # rubocop:disable Lint/RescueException
         # Treat *any* error like a step failure and proceed accordingly
         @logger.error [e, *e.backtrace].join("\n")
         step.error(step.infra.installer_hostname, "An error occured while performing #{step.name}: #{e.message}")
