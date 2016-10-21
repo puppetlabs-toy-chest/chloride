@@ -50,11 +50,13 @@ Lint/Void:
 
 # Offense count: 6
 Metrics/AbcSize:
+  Enabled: false
   Max: 70
 
 # Offense count: 4
 # Configuration parameters: CountComments.
 Metrics/BlockLength:
+  Enabled: false
   Max: 45
 
 # Offense count: 1
@@ -64,6 +66,7 @@ Metrics/ClassLength:
 
 # Offense count: 2
 Metrics/CyclomaticComplexity:
+  Enabled: false
   Max: 20
 
 # Offense count: 90
@@ -75,10 +78,12 @@ Metrics/LineLength:
 # Offense count: 10
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
+  Enabled: false
   Max: 89
 
 # Offense count: 2
 Metrics/PerceivedComplexity:
+  Enabled: false
   Max: 23
 
 # Offense count: 10
@@ -119,6 +124,7 @@ Style/BracesAroundHashParameters:
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: nested, compact
 Style/ClassAndModuleChildren:
+  Enabled: false
   Exclude:
     - 'lib/chloride/action/execute.rb'
     - 'lib/chloride/action/file_copy.rb'
