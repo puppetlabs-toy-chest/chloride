@@ -27,7 +27,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Check out the example [`go_execute` command](bin/go_execute)
+
+    $ bundle exec bin/go_execute 'abc123.example.com' 'cat /etc/hosts'
 
 ## Development
 
