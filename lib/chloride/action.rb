@@ -41,12 +41,12 @@ module Chloride
 
       def event(host, message, &stream_block)
         event = Chloride::Event.new(:action_progress, self.name)
-        if host.localhost
-          msg = Chloride::Event::Message.new(:info, host, "[localhost/#{host}] #{message}\n\n")
-        else
-          msg = Chloride::Event::Message.new(:info, host, "[#{host}] #{message}\n\n")
-        end
-        event.add_message(msg)
+        msg = if host.localhost
+                "[localhost/#{host}] #{message}\n\n"
+              else
+                "[#{host}] #{message}\n\n"
+              end
+        event.add_message(Chloride::Event::Message.new(:info, host, msg))
         stream_block.call(event)
       end
 
