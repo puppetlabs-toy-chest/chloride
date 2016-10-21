@@ -18,12 +18,12 @@ module Chloride
       if @from
         begin
           cmd = "getent hosts #{@address}"
-          cmd_event = Chloride::Event.new(:action_progress, self.name)
+          cmd_event = Chloride::Event.new(:action_progress, name)
           msg = Chloride::Event::Message.new(:info, @from, "[#{@from}] #{cmd}\n\n")
           cmd_event.add_message(msg)
           stream_block.call(cmd_event)
-          result = @from.execute(cmd, &self.update_proc(&stream_block))
-          @status = result[:exit_status] == 0 ? :success : :fail
+          result = @from.execute(cmd, &update_proc(&stream_block))
+          @status = (result[:exit_status]).zero? ? :success : :fail
         rescue Timeout::Error, Net::SSH::Disconnect => err
           @status = :fail
           raise(Chloride::RemoteError, "Connection terminated while executing command #{@cmd}: #{err}")
