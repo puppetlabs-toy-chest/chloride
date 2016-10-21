@@ -11,27 +11,25 @@ class Chloride::Host
 
   attr_accessor :data
 
-  def initialize(hostname, config={})
+  def initialize(hostname, config = {})
     @hostname = hostname
-    if config[:username].nil? || config[:username].strip.empty?
-      @username = 'root'
-    else
-      @username = config[:username]
-    end
-    if config[:ssh_key_file] && ! config[:ssh_key_file].strip.empty?
+    @username = if config[:username].nil? || config[:username].strip.empty?
+                  'root'
+                else
+                  config[:username]
+                end
+    if config[:ssh_key_file] && !config[:ssh_key_file].strip.empty?
       @ssh_key_file = File.expand_path(config[:ssh_key_file])
     end
-    @ssh_key_passphrase = config[:ssh_key_passphrase] unless (config[:ssh_key_passphrase].nil? || config[:ssh_key_passphrase].strip.empty?)
+    @ssh_key_passphrase = config[:ssh_key_passphrase] unless config[:ssh_key_passphrase].nil? || config[:ssh_key_passphrase].strip.empty?
     @localhost = config[:localhost] || false
-    @sudo_password = config[:sudo_password] unless (config[:sudo_password].nil? || config[:sudo_password].empty?)
+    @sudo_password = config[:sudo_password] unless config[:sudo_password].nil? || config[:sudo_password].empty?
     @data = {}
     @timeout = 60
     @ssh_status = nil
   end
 
-  def data
-    @data
-  end
+  attr_reader :data
 
   # Initializes SSH connection/session to host. Must be called before {#ssh} or {#scp}.
   #
@@ -40,8 +38,8 @@ class Chloride::Host
     unless @localhost
       log = StringIO.new
       logger = Logger.new(log)
-      logger.formatter = proc { |level, date, progname, msg|
-        "[#{date.utc.strftime("%Y-%m-%d %H:%M:%S.%L %Z")}] #{level} #{msg}\n"
+      logger.formatter = proc { |level, date, _progname, msg|
+        "[#{date.utc.strftime('%Y-%m-%d %H:%M:%S.%L %Z')}] #{level} #{msg}\n"
       }
 
       ssh_opts = {
@@ -49,13 +47,13 @@ class Chloride::Host
         passphrase: @ssh_key_passphrase,
         password: @sudo_password,
         logger: logger,
-        verbose: :warn,
-      }.reject { |k,v| v.nil? }
+        verbose: :warn
+      }.reject { |_, v| v.nil? }
 
       ssh_opts[:keys] = [@ssh_key_file] if @ssh_key_file
 
       # Use Ruby timeout because Net::SSH timeout appears to fail sometimes
-      Timeout::timeout(@timeout) {
+      Timeout.timeout(@timeout) {
         @ssh = Net::SSH.start(@hostname, @username, ssh_opts)
         @ssh_status = :connected
       }
@@ -73,7 +71,7 @@ class Chloride::Host
   rescue Errno::ETIMEDOUT, Timeout::Error => err
     @ssh_status = :error
     log.rewind
-    if log.length > 0
+    if !log.empty?
       raise("Connection timed out while attempting to SSH to #{@username}@#{@hostname}: \n#{log.read}")
     else
       raise("Connection timed out while attempting to SSH to #{@username}@#{@hostname}: #{err.message}")
@@ -84,16 +82,14 @@ class Chloride::Host
   #
   # @returns [Net::SSH::Connection] Closed SSH connection
   def ssh_disconnect
-    unless @localhost
-      Timeout::timeout(@timeout) {
+    if @localhost
+      @ssh_status = :localhost
+    else
+      Timeout.timeout(@timeout) {
         @ssh.close
-        closed_session = @ssh
         @ssh = nil
-        closed_session
         @ssh_status = :disconnected
       }
-    else
-      @ssh_status = :localhost
     end
   rescue Errno::ETIMEDOUT, Timeout::Error => err
     @ssh_status = :error
@@ -115,9 +111,7 @@ class Chloride::Host
   # :localhost - SSH is unnecessary because the host is localhost
   #
   # @returns Status of connection: nil, :connected, :disconnected, :error, :localhost
-  def ssh_status
-    @ssh_status
-  end
+  attr_reader :ssh_status
 
   # If you would like to open an SCP channel and perform up uploads or downloads:
   # host.scp.download!(@from, @from_file.path, @opts, &stream_block)
@@ -128,14 +122,14 @@ class Chloride::Host
 
   def upload!(*args, &blk)
     if @localhost
-      FileUtils.cp_r args[0], args[1], :preserve => true, :verbose => true
+      FileUtils.cp_r args[0], args[1], preserve: true, verbose: true
     else
       scp.upload!(*args, &blk)
     end
   end
 
-  def execute(cmd, sudo=false, &stream_block)
-    results = {:exit_status => nil, :stdout => "", :stderr => ""}
+  def execute(cmd, sudo = false, &stream_block)
+    results = { exit_status: nil, stdout: '', stderr: '' }
     sudo = false if @username == 'root'
 
     if sudo
@@ -149,15 +143,15 @@ class Chloride::Host
     info = {}
 
     # Send to results and stream block for display
-    send = Proc.new do |info, stream, string|
+    send = proc do |info, stream, string|
       stream_block.call(info, stream, string)
       results[stream] << string
     end
 
     # Buffering so output doesn't get split up in strange ways
-    buffers = {stdout: StringScanner.new(""), stderr: StringScanner.new("")}
-    buffer_proc = Proc.new do |info, stream, data|
-      raise NotImplementedError, "Unknown stream #{stream}" if ![:stdout, :stderr].include? stream
+    buffers = { stdout: StringScanner.new(''), stderr: StringScanner.new('') }
+    buffer_proc = proc do |info, stream, data|
+      raise NotImplementedError, "Unknown stream #{stream}" unless [:stdout, :stderr].include? stream
       buffers[stream] << data
       while l = buffers[stream].scan_until(/\n/)
         send.call(info, stream, l)
@@ -169,13 +163,11 @@ class Chloride::Host
       info['hostname'] = @hostname
       info['localhost'] = true
 
-      if sudo && ENV['USER'] != 'root'
-        raise 'Must be run as root'
-      end
+      raise 'Must be run as root' if sudo && ENV['USER'] != 'root'
 
       # Bundler/Ruby env vars we don't want hanging around causing problems
-      unsets = ["GEM_HOME", "RACK_ENV", "BUNDLE_GEMFILE", "GEM_PATH",
-                "RUBYOPT", "_ORIGINAL_GEM_PATH", "BUNDLE_BIN_PATH"]
+      unsets = ['GEM_HOME', 'RACK_ENV', 'BUNDLE_GEMFILE', 'GEM_PATH',
+                'RUBYOPT', '_ORIGINAL_GEM_PATH', 'BUNDLE_BIN_PATH']
 
       Open3.popen3("unset #{unsets.join(' ')}; /bin/sh") do |stdin, stdout, stderr, wait_thr|
         stdin.puts(cmd)
@@ -190,7 +182,7 @@ class Chloride::Host
             while out = stdout.gets
               buffer_proc.call(info, :stdout, out)
             end
-          rescue IO::WaitReadable => blocking
+          rescue IO::WaitReadable => _blocking
             buffer_proc.call(info, :stdout, "Waiting on #{cmd}...")
           end
 
@@ -198,7 +190,8 @@ class Chloride::Host
             while err = stderr.gets
               buffer_proc.call(info, :stderr, err)
             end
-          rescue IO::WaitReadable => blocking
+          rescue IO::WaitReadable => _blocking
+            buffer_proc.call(info, :stderr, "Waiting on #{cmd}...")
           end
         end
 
@@ -221,10 +214,10 @@ class Chloride::Host
         info['hostname'] = channel.connection.host
 
         channel.request_pty do |_, success|
-          raise("Could not acquire tty") unless success
+          raise('Could not acquire tty') unless success
 
           channel.exec cmd do |_, success|
-            raise "could not execute command" unless success
+            raise 'could not execute command' unless success
 
             # "on_data" is called when the process writes something to stdout
             channel.on_data do |_, data|
@@ -248,7 +241,7 @@ class Chloride::Host
               buffer_proc.call(info, stream, data)
             end
 
-            channel.on_request("exit-status") do |_, data|
+            channel.on_request('exit-status') do |_, data|
               results[:exit_status] = data.read_long
             end
           end
@@ -285,8 +278,8 @@ class Chloride::Host
     # This could be a terrible bug.
     elsif data =~ /Sorry, try again./
       # Sudo failed, wrong password. Bail out.
-      stream_block.call(info, :stderr, "Cannot proceed: Sudo password not recognized.")
-      raise Chloride::RemoteError, "Sudo password not recognized"
+      stream_block.call(info, :stderr, 'Cannot proceed: Sudo password not recognized.')
+      raise Chloride::RemoteError, 'Sudo password not recognized'
     end
   end
 end

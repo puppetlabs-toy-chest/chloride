@@ -1,10 +1,10 @@
-require "chloride/version"
-require "chloride/action/execute"
-require "chloride/action/file_copy"
-require "chloride/action/mkdir"
-require "chloride/action/mktmp"
-require "chloride/action/resolve_dns"
-require "chloride/host"
+require 'chloride/version'
+require 'chloride/action/execute'
+require 'chloride/action/file_copy'
+require 'chloride/action/mkdir'
+require 'chloride/action/mktmp'
+require 'chloride/action/resolve_dns'
+require 'chloride/host'
 
 module Chloride
   def self.go_execute(hostname, command)
@@ -12,9 +12,10 @@ module Chloride
     host.ssh_connect
 
     remote_command = Chloride::Action::Execute.new(
-      :host => host,
-      :sudo => true,
-      :cmd  => command)
+      host: host,
+      sudo: true,
+      cmd: command
+    )
 
     remote_command.go do |event|
       event.data[:messages].each do |data|

@@ -15,14 +15,13 @@ module Chloride
       @sudo = args[:sudo] || false
     end
 
-
     # TODO: Document block format
     def go(&stream_block)
       @status = :running
       @results = { @host.hostname => {} }
       mktemp = exec_and_log(@host, "mktemp -d -t '#{@template}'", @sudo, @results[@host.hostname], &stream_block)
 
-      if mktemp[:exit_status] == 0
+      if (mktemp[:exit_status]).zero?
         @dir = mktemp[:stdout].strip
         exec_and_log(@host, "chmod #{@chmod} #{@dir}", @sudo, @results[@host.hostname], &stream_block)
       end
@@ -31,17 +30,15 @@ module Chloride
     end
 
     def success?
-      @results.all? do |host, result|
-        result[:exit_status] == 0
+      @results.all? do |_host, result|
+        (result[:exit_status]).zero?
       end
     end
 
-    def dir
-      @dir
-    end
+    attr_reader :dir
 
     def error_message(hostname)
-      if @results.has_key?(hostname) && @results[hostname].has_key?(:stderr)
+      if @results.key?(hostname) && @results[hostname].key?(:stderr)
         @results[hostname][:stderr].strip
       end
     end

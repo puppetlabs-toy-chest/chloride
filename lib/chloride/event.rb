@@ -4,7 +4,7 @@ class Chloride::Event
   attr_reader :type, :name, :time, :call_stack, :data
   attr_accessor :action_id
 
-  def initialize(type, name, data={})
+  def initialize(type, name, data = {})
     @time = Time.now.utc
     @type = type
     @name = name
@@ -24,7 +24,7 @@ class Chloride::Event
     metadata = {
       time: @time.to_i,
       name: @name,
-      action_id: @action_id,
+      action_id: @action_id
     }
 
     json = @data.merge(metadata).to_json

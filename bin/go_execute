@@ -1,23 +1,23 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "chloride"
+require 'bundler/setup'
+require 'chloride'
 require 'optparse'
 
 opt_parse = OptionParser.new do |opts|
-  opts.banner = "Usage: go_execute [options] hosts"
+  opts.banner = 'Usage: go_execute [options] hosts'
   args = {}
 
-  opts.on("-h", "--help", "Prints this help") do
+  opts.on('-h', '--help', 'Prints this help') do
     puts opts
     exit
   end
 
-  return args
+  args
 end
 
 if ARGV.length < 2
-  opt_parse.parse!(%w[--help])
+  opt_parse.parse!(%w(--help))
 else
   hostname = ARGV[0]
   command = ARGV[1]
