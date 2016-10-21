@@ -1,4 +1,4 @@
-require 'uri'
+require 'cgi'
 
 module Chloride
   class Event
@@ -15,7 +15,7 @@ module Chloride
         {
           severity: @severity,
           hostname: @hostname,
-          message: URI.escape(remove_ansi(@message))
+          message: CGI.escape_html(remove_ansi(@message))
         }.to_json(*args)
       end
 

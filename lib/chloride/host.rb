@@ -7,7 +7,7 @@ require 'timeout'
 require 'json'
 
 class Chloride::Host
-  attr_reader :data, :remote_conn, :roles, :hostname, :username, :ssh_key_file, :ssh_key_passphrase, :alt_names, :localhost
+  attr_reader :data, :remote_conn, :hostname, :username, :ssh_key_file, :ssh_key_passphrase, :localhost
   attr_accessor :data
 
   def initialize(hostname, config = {})
