@@ -10,7 +10,6 @@
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride/host.rb'
 
 # Offense count: 1
@@ -18,27 +17,20 @@ Lint/HandleExceptions:
   Exclude:
     - 'lib/chloride/host.rb'
 
-# Offense count: 1
 Lint/RescueException:
-  Exclude:
-    - 'bin/chloride.rb'
+  Enabled: true
 
 # Offense count: 5
 Lint/ShadowingOuterLocalVariable:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride/host.rb'
 
-# Offense count: 1
 # Cop supports --auto-correct.
 Lint/StringConversionInInterpolation:
-  Exclude:
-    - 'bin/chloride.rb'
+  Enabled: true
 
-# Offense count: 2
 Lint/UnderscorePrefixedVariableName:
-  Exclude:
-    - 'bin/chloride.rb'
+  Enabled: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
@@ -100,11 +92,9 @@ Performance/RedundantBlockCall:
     - 'lib/chloride/action/resolve_dns.rb'
     - 'lib/chloride/host.rb'
 
-# Offense count: 1
 # Cop supports --auto-correct.
 Performance/TimesMap:
-  Exclude:
-    - 'bin/chloride.rb'
+  Enabled: true
 
 # Offense count: 3
 # Cop supports --auto-correct.
@@ -115,7 +105,6 @@ Performance/TimesMap:
 # IgnoredMethods: lambda, proc, it
 Style/BlockDelimiters:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride/host.rb'
 
 # Offense count: 2
@@ -185,15 +174,12 @@ Style/EmptyLines:
 # Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
 Style/ExtraSpacing:
   Exclude:
-    - 'bin/chloride.rb'
     - 'chloride.gemspec'
 
-# Offense count: 1
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: format, sprintf, percent
 Style/FormatString:
-  Exclude:
-    - 'bin/chloride.rb'
+  Enabled: true
 
 # Offense count: 6
 # Configuration parameters: MinBodyLength.
@@ -210,7 +196,6 @@ Style/GuardClause:
 # SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
 Style/HashSyntax:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride.rb'
     - 'lib/chloride/action/file_copy.rb'
     - 'lib/chloride/event/message.rb'
@@ -227,13 +212,10 @@ Style/IfUnlessModifier:
   Exclude:
     - 'lib/chloride/host.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: normal, rails
 Style/IndentationConsistency:
-  Exclude:
-    - 'bin/chloride.rb'
+  Enabled: true
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -254,7 +236,6 @@ Style/LeadingCommentSpace:
 # SupportedStyles: symmetrical, new_line, same_line
 Style/MultilineMethodCallBraceLayout:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride.rb'
 
 # Offense count: 1
@@ -339,7 +320,6 @@ Style/RedundantSelf:
 # Cop supports --auto-correct.
 Style/SpaceAfterComma:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride/action/file_copy.rb'
     - 'lib/chloride/event/message.rb'
     - 'lib/chloride/host.rb'
@@ -364,7 +344,6 @@ Style/SpaceAroundEqualsInParameterDefault:
 # Configuration parameters: AllowForAlignment.
 Style/SpaceAroundOperators:
   Exclude:
-    - 'bin/chloride.rb'
     - 'chloride.gemspec'
 
 # Offense count: 2
@@ -372,8 +351,7 @@ Style/SpaceAroundOperators:
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: space, no_space
 Style/SpaceBeforeBlockBraces:
-  Exclude:
-    - 'bin/chloride.rb'
+  Enabled: true
 
 # Offense count: 5
 # Cop supports --auto-correct.
@@ -381,7 +359,6 @@ Style/SpaceBeforeBlockBraces:
 # SupportedStyles: space, no_space
 Style/SpaceInsideBlockBraces:
   Exclude:
-    - 'bin/chloride.rb'
     - 'spec/lib/chloride/host_spec.rb'
 
 # Offense count: 10
@@ -408,7 +385,6 @@ Style/StringLiterals:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiteralsInInterpolation:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride/host.rb'
 
 # Offense count: 1
@@ -425,7 +401,6 @@ Style/TernaryParentheses:
 # SupportedStyles: comma, consistent_comma, no_comma
 Style/TrailingCommaInLiteral:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride/event.rb'
     - 'lib/chloride/event/message.rb'
     - 'lib/chloride/host.rb'
@@ -449,7 +424,6 @@ Style/UnlessElse:
 # Cop supports --auto-correct.
 Style/UnneededInterpolation:
   Exclude:
-    - 'bin/chloride.rb'
     - 'lib/chloride/errors.rb'
 
 # Offense count: 1
