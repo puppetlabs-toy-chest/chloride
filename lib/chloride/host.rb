@@ -87,9 +87,7 @@ class Chloride::Host
     else
       Timeout.timeout(@timeout) {
         @ssh.close
-        closed_session = @ssh
         @ssh = nil
-        closed_session
         @ssh_status = :disconnected
       }
     end
@@ -193,6 +191,7 @@ class Chloride::Host
               buffer_proc.call(info, :stderr, err)
             end
           rescue IO::WaitReadable => _blocking
+            buffer_proc.call(info, :stderr, "Waiting on #{cmd}...")
           end
         end
 
