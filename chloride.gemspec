@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'chloride'
   spec.version       = Chloride::VERSION
   spec.authors       = ['Brandon High', 'Eric Williamson', 'Nick Lewis']
-  spec.email         = ['brandon.high@puppet.com', 'eric.williamson@puppet.coml', 'nick@puppet.com']
+  spec.email         = ['brandon.high@puppet.com', 'eric.williamson@puppet.com', 'nick@puppet.com']
 
   spec.summary       = 'A simple streaming NetSSH implementation'
   # spec.description   = %q{TODO: More verbose description here.}
