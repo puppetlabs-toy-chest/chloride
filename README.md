@@ -1,8 +1,13 @@
 # Chloride
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/chloride`. To experiment with that code, run `bin/console` for an interactive prompt.
+A simple abstraction layer around NetSSH.
 
-TODO: Delete this and the text above, and describe your gem
+Features:
+* `Host` allows you to easily SSH/SCP to a host using local SSH defaults
+* `Actions` allow you to automate you interactions with `Host`s
+* Create a sequence of `Actions` to be performed on `Host`s
+* Put it all together in order to automate your SSH-based workflows, such as
+  installing Puppet.
 
 ## Installation
 
@@ -32,5 +37,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/chloride. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/highb/chloride. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
