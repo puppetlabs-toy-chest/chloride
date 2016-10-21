@@ -1,4 +1,4 @@
-# Chloride [![Build Status](https://travis-ci.org/highb/chloride.svg?branch=master)](https://travis-ci.org/highb/chloride)
+# Chloride [![Build Status](https://travis-ci.org/puppetlabs/chloride.svg?branch=master)](https://travis-ci.org/puppetlabs/chloride)
 
 A simple abstraction layer around NetSSH.
 
@@ -39,4 +39,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/highb/chloride. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/puppetlabs/chloride. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.

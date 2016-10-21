@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'A simple streaming NetSSH implementation'
   # spec.description   = %q{TODO: More verbose description here.}
-  spec.homepage      = 'https://github.com/highb/chloride'
+  spec.homepage      = 'https://github.com/puppetlabs/chloride'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
