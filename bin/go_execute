@@ -5,7 +5,7 @@ require 'chloride'
 require 'optparse'
 
 opt_parse = OptionParser.new do |opts|
-  opts.banner = 'Usage: go_execute [options] hosts'
+  opts.banner = 'Usage: go_execute [options] host command'
   args = {}
 
   opts.on('-h', '--help', 'Prints this help') do
