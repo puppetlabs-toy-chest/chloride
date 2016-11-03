@@ -4,8 +4,7 @@ A simple abstraction layer around NetSSH.
 
 Features:
 * `Host` allows you to easily SSH/SCP to a host using local SSH defaults
-* `Actions` allow you to automate you interactions with `Host`s
-* Create a sequence of `Actions` to be performed on `Host`s
+* `Actions` allows you to automate your interactions on a `Host`
 * Put it all together in order to automate your SSH-based workflows, such as
   installing Puppet.
 
