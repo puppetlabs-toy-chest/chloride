@@ -28,6 +28,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry', '~> 0.10'
   spec.add_development_dependency 'pry-coolline', '~> 0.2'
   spec.add_development_dependency 'rubocop', '~> 0.44'
-  spec.add_dependency 'net-ssh', '~> 3.2'
-  spec.add_dependency 'net-scp', '~> 1.2'
+  spec.add_dependency 'net-ssh', '~> 2'
+  spec.add_dependency 'net-scp', '~> 1'
 end
