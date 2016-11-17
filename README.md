@@ -38,4 +38,16 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/puppetlabs/chloride. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+[Bug reports](https://github.com/puppetlabs/chloride/issues) and [pull requests](https://github.com/puppetlabs/chloride/pulls) are welcome on GitHub at https://github.com/puppetlabs/chloride. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+
+See [LICENSE](LICENSE) file.
+
+## Support
+
+We use [semantic version numbers](https://semvar.org) for our releases, and recommend that users stay as up-to-date as possible by upgrading to patch releases and minor releases as they become available.
+
+Bugfixes and ongoing development will occur in minor releases for the current major version.
+
+Technical support is __not__ provided for this library.
