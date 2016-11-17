@@ -2,12 +2,12 @@ require 'spec_helper'
 require 'chloride/executor'
 
 describe Chloride::Executor do
-  subject { described_class.new(Logger.new('/dev/null')) }
+  subject { described_class.new(Logger.new(File.open('rspec.log', 'w+'))) }
 
   describe '#execute' do
     let(:executed_events) do
       collected_events = []
-      executor = described_class.new(Logger.new('/dev/null')) { |e| collected_events << e }
+      executor = described_class.new(Logger.new(File.open('rspec.log', 'w+'))) { |e| collected_events << e }
       executor.execute(steps)
       collected_events
     end
