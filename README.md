@@ -1,4 +1,5 @@
 # Chloride
+[![Gem Version](https://badge.fury.io/rb/chloride.svg)](https://badge.fury.io/rb/chloride)
 [![Build Status](https://travis-ci.org/puppetlabs/chloride.svg?branch=master)](https://travis-ci.org/puppetlabs/chloride)
 [![Issue Count](https://codeclimate.com/github/puppetlabs/chloride/badges/issue_count.svg)](https://codeclimate.com/github/puppetlabs/chloride)
 
