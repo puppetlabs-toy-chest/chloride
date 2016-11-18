@@ -1,4 +1,6 @@
-# Chloride [![Build Status](https://travis-ci.org/puppetlabs/chloride.svg?branch=master)](https://travis-ci.org/puppetlabs/chloride)
+# Chloride
+[![Build Status](https://travis-ci.org/puppetlabs/chloride.svg?branch=master)](https://travis-ci.org/puppetlabs/chloride)
+[![Issue Count](https://codeclimate.com/github/puppetlabs/chloride/badges/issue_count.svg)](https://codeclimate.com/github/puppetlabs/chloride)
 
 A simple abstraction layer around NetSSH.
 
