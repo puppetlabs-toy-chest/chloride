@@ -176,17 +176,8 @@ class Chloride::Host
           info['thread_status'] = wait_thr.status
 
           begin
-            while out = stdout.gets
-              buffer_proc.call(info, :stdout, out)
-            end
-          rescue IO::WaitReadable => _blocking
-            buffer_proc.call(info, :stdout, "Waiting on #{cmd}...")
-          end
-
-          begin
-            while err = stderr.gets
-              buffer_proc.call(info, :stderr, err)
-            end
+            buffer_proc.call(info, :stdout, stdout.gets)
+            buffer_proc.call(info, :stderr, stderr.gets)
           rescue IO::WaitReadable => _blocking
             buffer_proc.call(info, :stderr, "Waiting on #{cmd}...")
           end
