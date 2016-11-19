@@ -1,6 +1,7 @@
 require 'chloride/version'
 require 'chloride/action/execute'
 require 'chloride/action/file_copy'
+require 'chloride/action/file_push'
 require 'chloride/action/mkdir'
 require 'chloride/action/mktmp'
 require 'chloride/action/resolve_dns'
