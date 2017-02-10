@@ -37,7 +37,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
                          :rhel
                        when /amazonami/
                          :amazon
-                       when /suselinux/
+                       when /suse/
                          :sles
                        else
                          distribution.to_sym
@@ -45,7 +45,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
 
         release = lsb_data['Release'].gsub(/\s+/, '')
         release = case distribution
-                  when :centos, :rhel
+                  when :centos, :rhel, :sles
                     release.split('.')[0]
                   when :debian
                     if release == 'testing'
