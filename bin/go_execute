@@ -17,7 +17,7 @@ opt_parse = OptionParser.new do |opts|
 end
 
 if ARGV.length < 2
-  opt_parse.parse!(%w(--help))
+  opt_parse.parse!(%w[--help])
 else
   hostname = ARGV[0]
   command = ARGV[1]

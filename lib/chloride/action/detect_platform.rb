@@ -127,7 +127,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
         if (suse_release[:exit_status]).zero?
           stdout = suse_release[:stdout]
 
-          if /Enterprise Server/ =~ stdout
+          if stdout.match?(/Enterprise Server/)
             distribution = :sles
             release = /^VERSION = (\d*)/m.match(stdout)[1]
           end
@@ -141,7 +141,7 @@ class Chloride::Action::DetectPlatform < Chloride::Action
         if (system_release[:exit_status]).zero?
           stdout = system_release[:stdout]
 
-          if /amazon linux/im =~ stdout
+          if stdout.match?(/amazon linux/im)
             distribution = :amazon
             # How is this safe to assume?
             release = '6'

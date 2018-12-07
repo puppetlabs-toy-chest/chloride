@@ -6,6 +6,9 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+AllCops:
+  TargetRubyVersion: 2.4
+
 # Offense count: 6
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:
@@ -364,3 +367,20 @@ Style/WordArray:
 # Cop supports --auto-correct.
 Style/ZeroLengthPredicate:
   AutoCorrect: true
+
+# I'll be a terse as I want to
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+
+# Don't like the %i style.
+Style/SymbolArray:
+  Enabled: false
+
+# if code_is_poetry
+#   make_a_block_if_you_want_to
+# end
+Style/IfUnlessModifier:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false

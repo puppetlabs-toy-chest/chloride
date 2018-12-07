@@ -6,7 +6,7 @@ class Chloride::Executor
 
   def publish(event, action_id = nil)
     event.action_id = action_id if action_id
-    @stream_block.call(event) if @stream_block
+    @stream_block&.call(event)
   end
 
   def execute(steps)

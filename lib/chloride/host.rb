@@ -8,7 +8,7 @@ require 'json'
 require 'chloride/ssh_known_hosts'
 
 class Chloride::Host
-  attr_reader :data, :remote_conn, :hostname, :username, :ssh_key_file, :ssh_key_passphrase, :localhost
+  attr_reader :remote_conn, :hostname, :username, :ssh_key_file, :ssh_key_passphrase, :localhost
   attr_accessor :data
 
   def initialize(hostname, config = {})
@@ -58,7 +58,7 @@ class Chloride::Host
         @ssh_status = :connected
       }
     end
-  rescue Net::SSH::AuthenticationFailed => err
+  rescue Net::SSH::AuthenticationFailed => _
     @ssh_status = :error
     log.rewind
     raise("Authentication failed while attempting to SSH to #{@username}@#{@hostname}: \n#{log.read}")
@@ -152,6 +152,7 @@ class Chloride::Host
     buffers = { stdout: StringScanner.new(''), stderr: StringScanner.new('') }
     buffer_proc = proc do |info, stream, data|
       raise NotImplementedError, "Unknown stream #{stream}" unless [:stdout, :stderr].include? stream
+
       buffers[stream] << data
       while l = buffers[stream].scan_until(/\n/)
         send.call(info, stream, l)
@@ -271,12 +272,12 @@ class Chloride::Host
       ch.wait
 
       true
-    elsif data =~ /^#{@username} is not in the sudoers file./
+    elsif data.match?(/^#{@username} is not in the sudoers file./)
       # Sudo failed, wrong user. Bail out.
       stream_block.call(info, :stderr, "Cannot proceed: User #{@username} does not have sudo permission.")
       raise Chloride::RemoteError, "User #{@username} does not have sudo permission"
     # This could be a terrible bug.
-    elsif data =~ /Sorry, try again./
+    elsif data.match?(/Sorry, try again./)
       # Sudo failed, wrong password. Bail out.
       stream_block.call(info, :stderr, 'Cannot proceed: Sudo password not recognized.')
       raise Chloride::RemoteError, 'Sudo password not recognized'

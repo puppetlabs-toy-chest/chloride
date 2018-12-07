@@ -35,13 +35,13 @@ module Chloride
     host = Chloride::Host.new(hostname)
     host.ssh_connect
 
-    action_class = case action
-    when 'file_copy'
-      opts[:to_host] = host
-      Chloride::Action::FileCopy
-    else
-      raise "Unknown or unsupported action #{action_class}"
-    end
+    action_class =  case action
+                    when 'file_copy'
+                      opts[:to_host] = host
+                      Chloride::Action::FileCopy
+                    else
+                      raise "Unknown or unsupported action #{action_class}"
+                    end
 
     remote_action = action_class.new(opts)
 
