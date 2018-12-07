@@ -5,6 +5,7 @@ require 'strscan'
 require 'open3'
 require 'timeout'
 require 'json'
+require 'chloride/ssh_known_hosts'
 
 class Chloride::Host
   attr_reader :data, :remote_conn, :hostname, :username, :ssh_key_file, :ssh_key_passphrase, :localhost
@@ -26,6 +27,7 @@ class Chloride::Host
     @data = {}
     @timeout = 60
     @ssh_status = nil
+    @known_hosts_file = config[:known_hosts] || 'known_hosts'
   end
 
   # Initializes SSH connection/session to host. Must be called before {#ssh} or {#scp}.
@@ -44,7 +46,8 @@ class Chloride::Host
         passphrase: @ssh_key_passphrase,
         password: @sudo_password,
         logger: logger,
-        verbose: :warn
+        verbose: :warn,
+        known_hosts: Chloride::SSHKnownHosts.new(@known_hosts_file)
       }.reject { |_, v| v.nil? }
 
       ssh_opts[:keys] = [@ssh_key_file] if @ssh_key_file

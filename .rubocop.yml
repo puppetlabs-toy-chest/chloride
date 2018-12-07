@@ -169,12 +169,12 @@ Style/Documentation:
     - 'lib/chloride/step/noop.rb'
 
 # Cop supports --auto-correct.
-Style/EmptyLines:
+Layout/EmptyLines:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
-Style/ExtraSpacing:
+Layout/ExtraSpacing:
   AutoCorrect: true
 
 # Configuration parameters: EnforcedStyle, SupportedStyles.
@@ -204,22 +204,22 @@ Style/IfUnlessModifier:
 
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: normal, rails
-Style/IndentationConsistency:
+Layout/IndentationConsistency:
   Enabled: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: Width.
-Style/IndentationWidth:
+Layout/IndentationWidth:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
-Style/LeadingCommentSpace:
+Layout/LeadingCommentSpace:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: symmetrical, new_line, same_line
-Style/MultilineMethodCallBraceLayout:
+Layout/MultilineMethodCallBraceLayout:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
@@ -270,40 +270,40 @@ Style/RedundantSelf:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
-Style/SpaceAfterComma:
+Layout/SpaceAfterComma:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
-Style/SpaceAfterNot:
+Layout/SpaceAfterNot:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: space, no_space
-Style/SpaceAroundEqualsInParameterDefault:
+Layout/SpaceAroundEqualsInParameterDefault:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment.
-Style/SpaceAroundOperators:
+Layout/SpaceAroundOperators:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: space, no_space
-Style/SpaceBeforeBlockBraces:
+Layout/SpaceBeforeBlockBraces:
   Enabled: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
 # SupportedStyles: space, no_space
-Style/SpaceInsideBlockBraces:
+Layout/SpaceInsideBlockBraces:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
 # SupportedStyles: space, no_space, compact
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
@@ -312,6 +312,9 @@ Style/SpaceInsideHashLiteralBraces:
 Style/StringLiterals:
   Enabled: true
   AutoCorrect: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
 
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 # SupportedStyles: single_quotes, double_quotes
@@ -327,7 +330,9 @@ Style/TernaryParentheses:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
 # SupportedStyles: comma, consistent_comma, no_comma
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  AutoCorrect: true
+Style/TrailingCommaInHashLiteral:
   AutoCorrect: true
 
 # Cop supports --auto-correct.
