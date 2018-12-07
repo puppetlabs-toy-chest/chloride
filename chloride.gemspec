@@ -21,6 +21,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.required_ruby_version = '~> 2.4'
+
   spec.add_development_dependency 'bundler', '~> 1'
   spec.add_development_dependency 'rake', '~> 11'
   spec.add_development_dependency 'rspec', '~> 3'
@@ -28,6 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry', '~> 0.10'
   spec.add_development_dependency 'pry-coolline', '~> 0.2'
   spec.add_development_dependency 'rubocop', '~> 0.44'
-  spec.add_dependency 'net-ssh', '~> 2'
+  spec.add_dependency 'net-ssh', '~> 4'
   spec.add_dependency 'net-scp', '~> 1'
 end
