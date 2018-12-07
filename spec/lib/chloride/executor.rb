@@ -41,15 +41,15 @@ describe Chloride::Executor do
 
     shared_examples_for :step_failure do
       it 'sends a step_error event' do
-        expect(executed_events).to include satisfy { |m| m.type == :step_error && m.name == :step1 }
+        expect(executed_events).to include(satisfy { |m| m.type == :step_error && m.name == :step1 })
       end
 
       it 'does not send a step_success event' do
-        expect(executed_events).not_to include satisfy { |m| m.type == :step_success && m.name == :step1 }
+        expect(executed_events).not_to include(satisfy { |m| m.type == :step_success && m.name == :step1 })
       end
 
       it 'does not send a step_warn event' do
-        expect(executed_events).not_to include satisfy { |m| m.type == :step_warn && m.name == :step1 }
+        expect(executed_events).not_to include(satisfy { |m| m.type == :step_warn && m.name == :step1 })
       end
 
       it 'executes the remaining steps if the failed step is not fail-stop' do
@@ -70,17 +70,17 @@ describe Chloride::Executor do
         end
 
         it 'sends a step_skip event for the remaining steps' do
-          expect(executed_events).to include satisfy { |m| m.type == :step_skip && m.name == :step2 }
+          expect(executed_events).to include(satisfy { |m| m.type == :step_skip && m.name == :step2 })
         end
 
         it 'does not send a step_start event for the remaining steps' do
-          expect(executed_events).not_to include satisfy { |m| m.type == :step_start && m.name == :step2 }
+          expect(executed_events).not_to include(satisfy { |m| m.type == :step_start && m.name == :step2 })
         end
 
         it 'does not send any complete event for the remaining steps' do
-          expect(executed_events).not_to include satisfy { |m| m.type == :step_success && m.name == :step2 }
-          expect(executed_events).not_to include satisfy { |m| m.type == :step_warn && m.name == :step2 }
-          expect(executed_events).not_to include satisfy { |m| m.type == :step_error && m.name == :step2 }
+          expect(executed_events).not_to include(satisfy { |m| m.type == :step_success && m.name == :step2 })
+          expect(executed_events).not_to include(satisfy { |m| m.type == :step_warn && m.name == :step2 })
+          expect(executed_events).not_to include(satisfy { |m| m.type == :step_error && m.name == :step2 })
         end
       end
     end
@@ -101,7 +101,7 @@ describe Chloride::Executor do
 
         it 'adds the exception as an error message' do
           event = executed_events.find { |m| m.type == :step_error && m.name == :step1 }
-          expect(event.messages).to include satisfy { |m| m.severity == :error && m.message =~ /An error occured while performing.*terribly, horribly awry!/ }
+          expect(event.messages).to include(satisfy { |m| m.severity == :error && m.message =~ /An error occured while performing.*terribly, horribly awry!/ })
         end
 
         it_behaves_like :step_failure
@@ -114,15 +114,15 @@ describe Chloride::Executor do
       end
 
       it 'sends a step_warn event' do
-        expect(executed_events).to include satisfy { |m| m.type == :step_warn && m.name == :step1 }
+        expect(executed_events).to include(satisfy { |m| m.type == :step_warn && m.name == :step1 })
       end
 
       it 'does not send a step_success event' do
-        expect(executed_events).not_to include satisfy { |m| m.type == :step_success && m.name == :step1 }
+        expect(executed_events).not_to include(satisfy { |m| m.type == :step_success && m.name == :step1 })
       end
 
       it 'does not send a step_error event' do
-        expect(executed_events).not_to include satisfy { |m| m.type == :step_error && m.name == :step1 }
+        expect(executed_events).not_to include(satisfy { |m| m.type == :step_error && m.name == :step1 })
       end
 
       it 'executes the remaining steps if the step is not fail-stop' do
@@ -140,15 +140,15 @@ describe Chloride::Executor do
 
     describe 'when a step has status success' do
       it 'sends a step_success event' do
-        expect(executed_events).to include satisfy { |m| m.type == :step_success && m.name == :step1 }
+        expect(executed_events).to include(satisfy { |m| m.type == :step_success && m.name == :step1 })
       end
 
       it 'does not send a step_error event' do
-        expect(executed_events).not_to include satisfy { |m| m.type == :step_error && m.name == :step1 }
+        expect(executed_events).not_to include(satisfy { |m| m.type == :step_error && m.name == :step1 })
       end
 
       it 'does not send a step_warn event' do
-        expect(executed_events).not_to include satisfy { |m| m.type == :step_warn && m.name == :step1 }
+        expect(executed_events).not_to include(satisfy { |m| m.type == :step_warn && m.name == :step1 })
       end
 
       it 'executes the remaining steps if the step is not fail-stop' do
