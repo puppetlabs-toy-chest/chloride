@@ -27,8 +27,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 11'
   spec.add_development_dependency 'rspec', '~> 3'
   spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'gem-release'
+  spec.add_development_dependency 'simplecov'
   spec.add_dependency 'net-scp'
   spec.add_dependency 'net-ssh'
 end
