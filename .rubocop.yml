@@ -384,3 +384,8 @@ Style/IfUnlessModifier:
 
 Metrics/LineLength:
   Enabled: false
+
+# We're ok with using variable names (` Exception => err`) 
+#   for exceptions, not just `Exception => e`
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
