@@ -43,14 +43,21 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 We use [gem-release](https://github.com/svenfuchs/gem-release) to make the gem release process easier.
 ```
-# with any of these commands, provide --pretend to see what would happen
-# First we bump the lib/chloride/version.rb file
-bundle exec gem bump -v 1.1.1       # Bump to the given, specific version number
-bundle exec gem bump -v major       # Bump to the next major level (e.g. 0.0.1 to 1.0.0)
-bundle exec gem bump -v minor       # Bump to the next minor level (e.g. 0.0.1 to 0.1.0)
-bundle exec gem bump -v patch       # Bump to the next patch level (e.g. 0.0.1 to 0.0.2)
-# Finally, we tag and release
+# First, ensure that all the files in the repo are world-readable
+chmod -R ugo+r *
+
+# with any of the following commands, provide --pretend to see what would happen
+# Second, bump the lib/chloride/version.rb file, and create a signed commit
+bundle exec gem bump -s -v 1.1.1       # Bump to the given, specific version number
+bundle exec gem bump -s -v major       # Bump to the next major level (e.g. 0.0.1 to 1.0.0)
+bundle exec gem bump -s -v minor       # Bump to the next minor level (e.g. 0.0.1 to 0.1.0)
+bundle exec gem bump -s -v patch       # Bump to the next patch level (e.g. 0.0.1 to 0.0.2)
+
+# Finally, tag and release
 bundle exec gem release -t -p       # Tag (-t), and push (-p) the gem
+
+# If you want to do it all in one
+bundle exec gem bump -v patch -s -t -p
 ```
 
 ## Contributing
