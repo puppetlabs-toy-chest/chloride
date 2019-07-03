@@ -39,6 +39,20 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+## Release
+
+We use [gem-release](https://github.com/svenfuchs/gem-release) to make the gem release process easier.
+```
+# with any of these commands, provide --pretend to see what would happen
+# First we bump the lib/chloride/version.rb file
+bundle exec gem bump -v 1.1.1       # Bump to the given, specific version number
+bundle exec gem bump -v major       # Bump to the next major level (e.g. 0.0.1 to 1.0.0)
+bundle exec gem bump -v minor       # Bump to the next minor level (e.g. 0.0.1 to 0.1.0)
+bundle exec gem bump -v patch       # Bump to the next patch level (e.g. 0.0.1 to 0.0.2)
+# Finally, we tag and release
+bundle exec gem release -t -p       # Tag (-t), and push (-p) the gem
+```
+
 ## Contributing
 
 [Bug reports](https://github.com/puppetlabs/chloride/issues) and [pull requests](https://github.com/puppetlabs/chloride/pulls) are welcome on GitHub at https://github.com/puppetlabs/chloride. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
